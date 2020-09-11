@@ -105,10 +105,6 @@ class ScanParameters(object):
     PRECURSOR_MZ = 'precursor_mz'
     ISOLATION_WIDTH = 'isolation_width'
 
-    # used in Top-N, hybrid and ROI controllers to perform dynamic exclusion
-    DYNAMIC_EXCLUSION_MZ_TOL = 'dew_mz_tol'
-    DYNAMIC_EXCLUSION_RT_TOL = 'dew_rt_tol'
-
     # only used by the hybrid controller for now, since its Top-N may change depending on time
     # for other DDA controllers it's always the same throughout the whole run, so we don't send this parameter
     CURRENT_TOP_N = 'current_top_N'

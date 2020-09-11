@@ -245,10 +245,6 @@ class Environment(object):
             isolation_width = [isolation_width]
             dda_scan_params.set(ScanParameters.ISOLATION_WIDTH, isolation_width)
 
-        # define dynamic exclusion parameters
-        dda_scan_params.set(ScanParameters.DYNAMIC_EXCLUSION_MZ_TOL, mz_tol)
-        dda_scan_params.set(ScanParameters.DYNAMIC_EXCLUSION_RT_TOL, rt_tol)
-
         # define other fragmentation parameters
         dda_scan_params.set(ScanParameters.COLLISION_ENERGY, collision_energy)
         dda_scan_params.set(ScanParameters.ORBITRAP_RESOLUTION, orbitrap_resolution)

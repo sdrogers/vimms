@@ -103,14 +103,12 @@ class TopNController(Controller):
         for task in tasks:
             for precursor in task.get('precursor_mz'):
                 mz = precursor.precursor_mz
-                mz_tol = task.get(ScanParameters.DYNAMIC_EXCLUSION_MZ_TOL)
-                rt_tol = task.get(ScanParameters.DYNAMIC_EXCLUSION_RT_TOL)
-                x = self._get_exclusion_item(mz, rt, mz_tol, rt_tol)
+                x = self._get_exclusion_item(mz, rt, self.mz_tol, self.rt_tol)
                 logger.debug('Time {:.6f} Created dynamic temporary exclusion window mz ({}-{}) rt ({}-{})'.format(
                     rt,
                     x.from_mz, x.to_mz, x.from_rt, x.to_rt
                 ))
-                x = self._get_exclusion_item(mz, rt, mz_tol, rt_tol)
+                x = self._get_exclusion_item(mz, rt, self.mz_tol, self.rt_tol)
                 temp_exclusion_list.append(x)
         return temp_exclusion_list
 
@@ -143,9 +141,7 @@ class TopNController(Controller):
 
                 # TODO: check if already excluded and, if so, just move the time
 
-                mz_tol = scan.scan_params.get(ScanParameters.DYNAMIC_EXCLUSION_MZ_TOL)
-                rt_tol = scan.scan_params.get(ScanParameters.DYNAMIC_EXCLUSION_RT_TOL)
-                x = self._get_exclusion_item(precursor.precursor_mz, current_time, mz_tol, rt_tol)
+                x = self._get_exclusion_item(precursor.precursor_mz, current_time, self.mz_tol, self.rt_tol)
                 logger.debug('Time {:.6f} Created dynamic exclusion window mz ({}-{}) rt ({}-{})'.format(
                     current_time,
                     x.from_mz, x.to_mz, x.from_rt, x.to_rt
